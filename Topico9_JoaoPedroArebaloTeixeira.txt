@@ -1,0 +1,116 @@
+1 - 
+P = [1]
+P = [1,2]
+P = [1,2,3]
+P = [1,2,3,3]
+P = [1,2,3,3,3]
+P = [1,2,3,3]
+P = [1,2,3,3,4]
+P = [1,2,3,3]
+
+----------------------------------------------------------------
+
+2 - 
+	empilha(desempilha(P), Q)
+	empilha(desempilha(P), R)
+	empilha(desempilha(P), Q)
+	empilha(desempilha(P), R)
+	empilha(desempilha(Q), R)
+	empilha(desempilha(Q), R)
+
+----------------------------------------------------------------
+
+3 -
+
+#include <stdio.h>
+
+int main() {
+  int num, resto, i = 0, base = 2;
+  char bin[100];
+  printf("Digite um número: ");
+  scanf("%d", &num);
+  while (num > 0) {
+    resto = num % base;
+    num /= base;
+    bin[i++] = resto + '0';
+  }
+  for (int j = 0; j < i / 2; j++) {
+    char aux = bin[j];
+    bin[j] = bin[i - 1 - j];
+    bin[i - 1 - j] = aux;
+  }
+  printf("O número em base binária é: %s\n", bin);
+  return 0;
+}
+
+----------------------------------------------------------------
+
+4 - 
+#include <stdio.h>
+#include <string.h>
+
+void convertePara(int num, int base, char *result) {
+  int i = 0;
+  while (num > 0) {
+    int resto = num % base;
+    num /= base;
+    result[i++] = resto + '0';
+  }
+  strrev(result);
+}
+
+int main() {
+  int num, base;
+  char bin[100];
+
+  printf("Digite um número natural: ");
+  scanf("%d", &num);
+  printf("Digite a base para conversão: ");
+  scanf("%d", &base);
+
+  if (base < 2 || base > 16) {
+    printf("A base deve ser entre 2 e 16\n");
+    return 1;
+  }
+
+  convertePara(num, base, bin);
+
+  printf("O número em base %d é: %s\n", base, bin);
+
+  return 0;
+}
+
+----------------------------------------------------------------
+
+6 - 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(){
+
+    char palavra[30];
+    int i, tam, diferentes = 0;
+
+    printf("Digite uma palavra: ");
+    scanf("%s", palavra);
+
+    tam = strlen(palavra);
+    tam--;
+    i = 0; 
+
+    while(tam >= i){
+        if(palavra[i] != palavra[tam]) 
+            diferentes ++;
+        i++;
+        tam--;
+    }
+
+    if(diferentes == 0)
+        printf("\nÉ palindromo\n");
+    else
+        printf("\nNao é palindromo\n");
+
+    return 0;
+}
+
